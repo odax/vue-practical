@@ -4,12 +4,10 @@
     <input id="max" v-model.number="max"/>
     <input id="count" v-model.number="count"/>
     <button id="btn" @click="generate({ count: 5, min: 10, max: 100 })">Generate</button>
-    <ul id="results">
-      <div v-if="results">
-        <div v-for="result in results">
+    <ul id="results" v-if="results">
+        <li v-for="result in results">
           {{result}}
-        </div>
-      </div>
+        </li>
     </ul>
   </div>
 </template>
