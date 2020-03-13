@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="col-2">
-      <button id="btn" @click="generate({ count: count, min: min, max: max})">Generate</button>
+      <button class="button" id="btn" @click="generate({ count: count, min: min, max: max})"><span>Generate</span></button>
     </div>
     <div class="col-3">
       <div v-if="results && !error" class="list-container">
@@ -26,7 +26,7 @@
       </ul>
       </div>
       <div v-if="error" class="error">
-        {{error}}
+        {{error}}!
       </div>
     </div>
     
@@ -59,7 +59,7 @@ export default Vue.extend({
     },
     generate({ count = 1, min = 1, max = 10 } = { count: 1, min: 1, max: 10 }): void {
       this.clearResults();
-      //check count > 10
+      // check count > 10
       if (count > 10) {
         this.error = 'Count Can\'t be Greater than 10';
         return;
@@ -82,18 +82,18 @@ export default Vue.extend({
         this.error = 'Max must be greater than Min';
         return;
       }
-      //check min/max below zero
+      // check min/max below zero
       if (min <= 0 || max <= 0) {
         this.error = 'Min and Max must both be above zero';
         return;
       }
-      //checks passed, generate nums for coun > 1
+      // checks passed, generate nums for coun > 1
       if (count > 1) {
         for (let i = 0; i <= count - 1; i++) {
           const ran = Math.floor(Math.random() * (max - min + 1) + min);
           this.results.push(ran);
         }
-        //generate nums for no count
+        // generate nums for no count
       } else {
         const ran = Math.floor(Math.random() * (max - min + 1) + min);
         this.results.push(ran);
@@ -104,31 +104,99 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-  .container {
-    width: 80%;
-    margin: auto;
-    display: flex;
-  }
-  .col-1-item {
-    display: flex; justify-content: flex-end;
-  }
-  .col-1 {
-    display: flex; flex-direction: column; justify-content: space-between; height: 120px; width: 30%;
-  }
-  .col-2 {
-    width: 30%; display: flex; align-items: center; justify-content: center;
-  }
-  .col-3 {
-    width: 30%;
-  }
-  .list-container {
-    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  }
-  .list {
-    list-style-type: none; display: flex; align-items: center; justify-content: center;
-  }
-  .error {
-    width: 100%; height: 100%; color: red; display: flex; justify-content: center; align-items: center;
-  }
+.container {
+  border: 4px solid grey;
+  background: #b590ca;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.button {
+  border-radius: 4px;
+  background: #a8d3da;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.col-1-item {
+  display: flex;
+  justify-content: flex-end;
+}
+.col-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+  width: 30%;
+}
+.col-2 {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.col-3 {
+  width: 37%;
+  background: #f5cab3;
+  border-radius: 5px;
+}
+.list-container {
+  width: 100%;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.list {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.error {
+  width: 100%;
+  height: 72px;
+  color: darkred;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  font-weight: 700;
+}
 
 </style>
