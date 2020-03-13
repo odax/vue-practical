@@ -5,6 +5,11 @@
     <input id="count" v-model.number="count"/>
     <button id="btn" @click="generate(6, 20, 30)">Generate</button>
     <ul id="results">
+      <div v-if="results">
+        <div v-for="result in results">
+          {{result}}
+        </div>
+      </div>
     </ul>
   </div>
 </template>
