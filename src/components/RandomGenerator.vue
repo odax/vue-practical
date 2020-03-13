@@ -1,9 +1,15 @@
 <template>
   <div>
+    MIN
     <input id="min" v-model.number="min"/>
+    <br>
+    MAX
     <input id="max" v-model.number="max"/>
+    <br>
+    COUNT
     <input id="count" v-model.number="count"/>
-    <button id="btn" @click="generate({ count: 5, min: 10, max: 100 })">Generate</button>
+    <br>
+    <button id="btn" @click="generate({ count: count, min: min, max: max})">Generate</button>
     <ul id="results" v-if="results">
         <li v-for="result in results">
           {{result}}
